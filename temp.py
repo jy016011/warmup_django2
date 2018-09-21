@@ -12,23 +12,14 @@ while True:
         if int(distance) <= 70:
             status = 'seated'
             data_b = (str(seat_num) + "\r\n" + status + "\r\n" + str(distance)).encode('utf-8')
-            req = urllib.request.Request(url='192.168.0.180', data= data_b ,method='PUT')
-            with urllib.request.urlopen(req) as f:
-                print(f.read().decode())
-            print(f.status)
-            print(f.reason)
+            req = urllib.request.Request(url='http://192.168.0.180', data= data_b ,method='PUT')
         else:
             count += 1
     else:
         if count >= 5:
             status = 'empty'
             data_b = str(seat_num) + "\r\n" + status + "\r\n" + str(distance).encode('utf-8')
-            req = urllib.request.Request(url='192.168.0.180', data= data_b ,method='PUT')
-
-            with urllib.request.urlopen(req) as f:
-                print(f.read().decode())
-            print(f.status)
-            print(f.reason)
+            req = urllib.request.Request(url='http://192.168.0.180', data= data_b ,method='PUT')
             count = 0
     
     
