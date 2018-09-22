@@ -17,15 +17,15 @@ def show_seat(request):
 		parsed = urlparse.urlparse(http_bas)
 		seat_num = urlparse.parse_qs(parsed.query)['num'][0]
 		seat_status = urlparse.parse_qs(parsed.query)['status'][0]
-		print('num',seat_num , 'status',seat_status)
-		print(type(seat_num))
+		print('seat num',seat_num , 'seat status',seat_status)
 		for seat in seats:
 			if(seat.seat_num == int(seat_num)):
 				seat.is_seat_empty = seat_status
 				print(seat.is_seat_empty)
 			seat.save()
+		
 	context = {'seats' : seats}
-
+	
 	return render(request, 'blog/show_seat.html',context)
 
 
