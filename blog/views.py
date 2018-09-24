@@ -11,10 +11,11 @@ def show_seat(request):
 	seats = Seats.objects.all()
 	str1 = ''
 	if request.method == "PUT":
-		data_de = request.read().decode('utf-8')
-		http_bas = "http://test/test?"
-		http_bas += data_de
+		decoded_data = request.read().decode('utf-8')
+		http_bas = "http://django/django?"
+		http_bas += decoded_data
 		parsed = urlparse.urlparse(http_bas)
+		#print(parsed.query)
 		seat_num = urlparse.parse_qs(parsed.query)['num'][0]
 		seat_status = urlparse.parse_qs(parsed.query)['status'][0]
 		print('seat num',seat_num , 'seat status',seat_status)
