@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Seats
 from django.views.decorators.csrf import csrf_exempt
 import urllib.parse as urlparse
+import json
 
 
 @csrf_exempt

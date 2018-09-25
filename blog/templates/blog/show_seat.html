@@ -11,7 +11,11 @@
         {% for seat in seats %}
         <tr>
             <td height="20px" style="text-align:center;vertical-align:middle"><SPAN style="FONT-SIZE:20pt"> <FONT face=돋움>{{seat.seat_num}}</FONT></SPAN></td>
-            <td height="20px" style="text-align:center;vertical-align:middle"><SPAN style="FONT-SIZE:40pt">{{seat.is_seat_empty}}</SPAN></td>
+            {% if seat.is_seat_empty == 'empty' %}
+            <td height="20px" style="text-align:center;vertical-align:middle" bgcolor="00CC00"><SPAN style="FONT-SIZE:40pt">{{seat.is_seat_empty}}</SPAN></td>
+            {% else %}
+            <td height="20px" style="text-align:center;vertical-align:middle" bgcolor="red"><SPAN style="FONT-SIZE:40pt">{{seat.is_seat_empty}}</SPAN></td>
+            {% endif %}
         </tr>
         {% endfor %}
     </table>
