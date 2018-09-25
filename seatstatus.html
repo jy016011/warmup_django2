@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href = "sytle.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <title>열람실 좌석 현황</title>
+</head>
+<body>
+<h1>열람실 좌석 현황</h1>
+    <table border="3" width="500px" height="400px" bordercoloe="red">
+        {% for seat in seats %}
+        <tr>
+            <td height="20px" style="text-align:center;vertical-align:middle"><SPAN style="FONT-SIZE:20pt"> <FONT face=돋움>{{seat.seat_num}}</FONT></SPAN></td>
+            {% if seat.is_seat_empty == 'empty' %}
+            <td height="20px" style="text-align:center;vertical-align:middle" bgcolor="00CC00"><SPAN style="FONT-SIZE:40pt">{{seat.is_seat_empty}}</SPAN></td>
+            {% else %}
+            <td height="20px" style="text-align:center;vertical-align:middle" bgcolor="red"><SPAN style="FONT-SIZE:40pt">{{seat.is_seat_empty}}</SPAN></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
