@@ -1,11 +1,33 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Seats
+from django.views.decorators.csrf import csrf_exempt
+import urllib.parse as urlparse
 
+
+@csrf_exempt
 def show_seat(request):
+
 	seats = Seats.objects.all()
-	str = ''
-	for seat in seats:
-		str += '{} seat is {}<BR>'.format(seat.seat_num, seat.is_seat_empty)
-	return HttpResponse(str) 
+	str1 = ''
+	if request.method == "PUT":
+		decoded_data = request.read().decode('utf-8')
+		http_bas = "http://django/django?"
+		http_bas += decoded_data
+		parsed = urlparse.urlparse(http_bas)
+		#print(parsed.query)
+		seat_num = urlparse.parse_qs(parsed.query)['num'][0]
+		seat_status = urlparse.parse_qs(parsed.query)['status'][0]
+		print('seat num',seat_num , 'seat status',seat_status)
+		for seat in seats:
+			if(seat.seat_num == int(seat_num)):
+				seat.is_seat_empty = seat_status
+				print(seat.is_seat_empty)
+			seat.save()
+		
+	context = {'seats' : seats}
+	
+	return render(request, 'blog/show_seat.html',context)
+
+
 # Create your views here.
