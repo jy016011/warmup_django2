@@ -8,7 +8,9 @@
 <body>
 <h1>열람실 좌석 현황</h1>
     <table border="3" width="500px" height="400px" bordercoloe="red">
-        {% for seat in seats %}
+	<td height="20px" style="text-align:center;vertical-align:middle"><SPAN style="FONT-SIZE:20pt"> <FONT face=돋움>seat_number</FONT></SPAN></td>
+	<td height="20px" style="text-align:center;vertical-align:middle"><SPAN style="FONT-SIZE:20pt"> <FONT face=돋움>seat_status</FONT></SPAN></td>
+	{% for seat in seats %}
         <tr>
             <td height="20px" style="text-align:center;vertical-align:middle"><SPAN style="FONT-SIZE:20pt"> <FONT face=돋움>{{seat.seat_num}}</FONT></SPAN></td>
             {% if seat.is_seat_empty == 'empty' %}

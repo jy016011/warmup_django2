@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Seats
 from django.views.decorators.csrf import csrf_exempt
 import urllib.parse as urlparse
-import json
+#import json
 
 
 @csrf_exempt
@@ -13,9 +13,10 @@ def show_seat(request):
 	str1 = ''
 	if request.method == "PUT": #requet type is PUT
 		decoded_data = request.read().decode('utf-8')#decode by UTF-8
-		http_bas = "http://django/django?"#to make http from url
+		http_bas = "http://django/django?"#to make http form url
 		http_bas += decoded_data
 		parsed = urlparse.urlparse(http_bas) #parsed from url
+		#print(parsed)
 		#print(parsed.query)
 		seat_num = urlparse.parse_qs(parsed.query)['num'][0]#parsed.query is dict type and seat_num = parsed.query['num'] (key value is 'num')
 		seat_status = urlparse.parse_qs(parsed.query)['status'][0]# seat_status = parsed.query['status'] (key value is 'status')
